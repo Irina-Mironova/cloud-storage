@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="center" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<children>
+   <Pane fx:id="panelLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" >
+   <children>
+      <VBox layoutX="158.0" layoutY="49.0" prefHeight="291.0" prefWidth="281.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="60.0" prefWidth="282.0" text="Введите логин и пароль:">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="loginField" />
+            <PasswordField fx:id="passwordField" />
+            <Button fx:id="inputButton" mnemonicParsing="false" prefHeight="19.0" prefWidth="308.0" text="Войти" />
+            <Button fx:id="registrationButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="297.0" text="Зарегистрироваться" />
+         </children>
+      </VBox>
+
+   </children>
+</Pane>
+   <Pane fx:id="panelFiles" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" >
+      <TextField />
+   </Pane>
+</children>
+</VBox>
