@@ -1,3 +1,5 @@
+package ru.geekbrains.storage.server;
+
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;
@@ -14,14 +16,14 @@ public class BDAuthenticationProvider implements AuthenticationProvider {
 
     //получение имени польз-ля по логину и паролю
     @Override
-    public String getUsernameByLoginAndPassword(String login, String password) {
+    public String getUsernameByLogin(String login) {
         try {
-            ps = connection.prepareStatement("Select * From users Where login = ? and password = ?");
+            ps = connection.prepareStatement("Select * From users Where login = ?");
             ps.setString(1, login);
-            ps.setString(2, password);
+
             rs = ps.executeQuery();
             while (rs.next()) {
-                return rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(5);
+                return rs.getString(2) + " " + rs.getString(3);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -31,6 +33,42 @@ public class BDAuthenticationProvider implements AuthenticationProvider {
         return null;
     }
 
+    //получение пароля по логину
+    @Override
+    public String getPasswordByLogin(String login) {
+        try {
+            ps = connection.prepareStatement("Select * From users Where login = ?");
+            ps.setString(1, login);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getString(6);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            log.error("Ошибка при работе с таблицей users в БД");
+            return null;
+        }
+        return null;
+    }
+
+
+    //получение login по email
+    @Override
+    public String getLoginByEmail(String email) {
+        try {
+            ps = connection.prepareStatement("Select * From users Where email = ?");
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getString(5);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            log.error("Ошибка при работе с таблицей users в БД");
+            return null;
+        }
+        return null;
+    }
 
     //создание нового пользователя
     public boolean newUser(String lastname, String name, String email, String login, String password, String uuid) {

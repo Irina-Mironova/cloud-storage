@@ -1,4 +1,5 @@
-import com.sun.xml.internal.ws.message.StringHeader;
+package ru.geekbrains.storage.server;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -20,6 +21,11 @@ public class Server {
     public void start() {
         EventLoopGroup auth = new NioEventLoopGroup(1);
         EventLoopGroup worker = new NioEventLoopGroup(1);
+
+        //подключение к БД
+        authenticationProvider = new BDAuthenticationProvider();
+        authenticationProvider.connectBD();
+
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.channel(NioServerSocketChannel.class)
@@ -30,17 +36,12 @@ public class Server {
                             socketChannel.pipeline().addLast(
                                     new ObjectDecoder(ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
-//                                    new StringEncoder(),
                                     new MessageHandler(authenticationProvider)
                             );
                         }
                     });
             ChannelFuture future = bootstrap.bind(8189).sync();
-            log.debug("Server started ...");
-
-            //подключение к БД
-            authenticationProvider = new BDAuthenticationProvider();
-            authenticationProvider.connectBD();
+            log.debug("ru.geekbrains.storage.server.Server started ...");
 
             future.channel().closeFuture().sync();
 

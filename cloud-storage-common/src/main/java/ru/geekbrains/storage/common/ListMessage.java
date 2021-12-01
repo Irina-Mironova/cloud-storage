@@ -1,7 +1,9 @@
+package ru.geekbrains.storage.common;
+
 import java.util.List;
 
 public class ListMessage implements Message{
-    public List<String> listFiles;
+    private List<String> listFiles;
 
     public ListMessage(List<String> listFiles) {
         this.listFiles = listFiles;

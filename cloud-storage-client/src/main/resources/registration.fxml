@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="395.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="395.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.geekbrains.storage.client.RegistrationController">
    <children>
       <Pane layoutX="-1.0" layoutY="-3.0" prefHeight="484.0" prefWidth="396.0">
          <children>
@@ -31,9 +31,9 @@
             <TextField fx:id="regEmailField" layoutX="84.0" layoutY="220.0" prefHeight="28.0" prefWidth="234.0" promptText="email" />
             <TextField fx:id="regLoginField" layoutX="84.0" layoutY="254.0" prefHeight="28.0" prefWidth="234.0" promptText="Логин" />
             <PasswordField fx:id="regPasswordField" layoutX="84.0" layoutY="291.0" prefHeight="28.0" prefWidth="234.0" promptText="Пароль" />
-            <PasswordField fx:id="regConfirmPasswordField" layoutX="84.0" layoutY="328.0" prefHeight="28.0" prefWidth="234.0" promptText="Подтверждение пароля" />
-            <Button  onAction="#registration" fx:id="regRegistrButton" layoutX="124.0" layoutY="372.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Зарегистрироваться" />
-            <Button fx:id="regCloseButton" layoutX="124.0" layoutY="412.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="149.0" text="Отмена" />
+            <PasswordField fx:id="regConfirmPasswordField" layoutX="84.0" layoutY="328.0" onAction="#registration" prefHeight="28.0" prefWidth="234.0" promptText="Подтверждение пароля" />
+            <Button fx:id="regRegistrButton" layoutX="121.0" layoutY="372.0" mnemonicParsing="false" onAction="#registration" prefHeight="25.0" prefWidth="161.0" text="Зарегистрироваться" />
+            <Button fx:id="regCloseButton" layoutX="121.0" layoutY="412.0" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="161.0" text="Отмена" />
             <Label layoutX="133.0" layoutY="104.0" prefHeight="25.0" prefWidth="133.0" text="Регистрация">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
